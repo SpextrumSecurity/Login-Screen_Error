@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:issaq_project/screens/Home.dart';
-import 'package:issaq_project/screens/splash.dart';
+import 'package:issaq_project/screens/home/Home.dart';
+import 'package:issaq_project/splash.dart';
 
 void main() {
   runApp(MyApp());

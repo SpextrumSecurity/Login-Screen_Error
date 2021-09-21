@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:issaq_project/screens/Home.dart';
+import 'package:issaq_project/screens/auth/Login.dart';
+import 'package:issaq_project/screens/home/Home.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -10,23 +11,23 @@ class _SplashState extends State<Splash> {
   @override
   @override
   void initState() {
-    _checkUserSementara();
+    _checkUserSementara(false);
     super.initState();
      
   }
   Widget build(BuildContext context) {
    return Scaffold(
       body: Center(
-        child: Text('Loading'),
-      ),
+        child: Image.asset('images/background-splash.png')
+      ,),
     );
   }
-   void _checkUserSementara() async{
+   void _checkUserSementara(bool user) async{
 
      await Future.delayed(Duration(seconds:2));
-
+    
      //navigator
-     Navigator.push(context, MaterialPageRoute(builder : (context) => Home()));
+     Navigator.pushReplacement(context, MaterialPageRoute(builder : (context) => user ? Home() : Login()));
    
  } 
 
