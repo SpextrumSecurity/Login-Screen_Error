@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:issaq_project/screens/home/Home.dart';
 import 'package:issaq_project/widgets/widgets.dart';
 
 class Login extends StatefulWidget {
@@ -7,6 +8,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  bool _obscureText = true;
+  bool _isLoading = false;
+
   Widget _authTitle() {
     return wAuthTitle(
       title: 'Login',
@@ -17,6 +23,7 @@ class _LoginState extends State<Login> {
   Widget _inputEmail() {
     return Container(
       child: TextField(
+        controller: _email,
         decoration: InputDecoration(hintText: 'Email'),
       ),
     );
@@ -27,14 +34,21 @@ class _LoginState extends State<Login> {
       children: <Widget>[
         Container(
           child: TextField(
+            controller: _password,
+            obscureText: _obscureText,
             decoration: InputDecoration(hintText: 'Password'),
           ),
         ),
         Align(
           alignment: Alignment.centerRight,
           child: IconButton(
-            icon: Icon(Icons.visibility),
-            onPressed: () {},
+            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey[600]),
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
           ),
         )
       ],
@@ -57,7 +71,14 @@ class _LoginState extends State<Login> {
   }
 
   Widget _inputSubmit() {
-    return wInputSubmit(context: context, title: 'Login', OnPressed: () {});
+    return wInputSubmit(
+      context: context,
+      title: 'Login',
+      OnPressed: () {
+        print('Email = ${_email.text}');
+        print('Email = ${_password.text}');
+      },
+    );
   }
 
   Widget _googleSignIn() {
@@ -68,7 +89,7 @@ class _LoginState extends State<Login> {
     return Container(
       margin: EdgeInsets.only(top: 40),
       child: Row(children: <Widget>[
-        Text('Dont Hace an account yet ? '),
+        Text('Dont Have an account yet ? '),
         GestureDetector(
             child: Container(
                 padding: EdgeInsets.all(10),
@@ -113,5 +134,21 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _loginHome() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    if (_email.text == 'demo@gmail.com' && _password.text == '1234') {
+      await Future.delayed(Duration(seconds: 2));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
+    } else {
+      print('GAGAL!');
+    }
   }
 }

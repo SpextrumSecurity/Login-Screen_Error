@@ -8,6 +8,7 @@ Widget wAppLoading(){
   );
 }
 
+  //Auth Title
   Widget wAuthTitle({required String title, required String subtitle}) {
     return Container(
       width: double.infinity,
@@ -26,6 +27,7 @@ Widget wAppLoading(){
     );
   }
 
+    // Pemisah
     Widget wTextDivider() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -43,6 +45,7 @@ Widget wAppLoading(){
     );
   }
 
+    // Google Sign In
     Widget wGoogleSignIn({required Function onPressed}) {
     return Container(
       width: double.infinity,
@@ -54,6 +57,8 @@ Widget wAppLoading(){
       ),
     );
   }
+
+  //Memasukkan Data atau Login
   Widget wInputSubmit({required BuildContext context, required String title, required Function OnPressed}) {
     return Container(
         width: double.infinity,
